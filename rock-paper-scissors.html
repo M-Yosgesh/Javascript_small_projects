@@ -8,90 +8,86 @@
   <Body>
     <p> Rock Paper Scissors</p>
 
-    <button onclick="
-    const randomNumber = Math.random();
-    console.log(randomNumber)
-    let computerMove=''
-    if (randomNumber <= 0.3){
-      computerMove='rock';}
-    else if  (randomNumber >= 0.3 && randomNumber <=0.6){
-      computerMove='paper';;
-       } 
-    else {
-      computerMove='scissors';
-    }  
-    let result='';
-    if (computerMove === 'rock'){
-      result = 'lets try again';
-    } 
-    else if (computerMove === 'paper'){
-      result = 'you lose';
-    }
-    else{
-      result='you won';
-    }
-    alert(`you picked rock , computer picked ${computerMove} . ${result}`)
-    ">
+    <button onclick="gamePlay('rock');;">
       Rock
     </button>
 
-    <button  onclick="
-      const randomNumber2 = Math.random();
-          console.log(randomNumber2)
-          let computerMove2=''
-          if (randomNumber2 <= 0.3){
-            computerMove2='rock';}
-          else if  (randomNumber2 >= 0.3 && randomNumber2 <=0.6){
-            computerMove2='paper';;
-            } 
-          else {
-            computerMove2='scissors';
-          }  
-          let result2='';
-          if (computerMove2 === 'rock'){
-            result2 = 'you won';
-          } 
-          else if (computerMove2 === 'paper'){
-            result2 = 'lets try again';
-          }
-          else{
-            result2='you lose';
-          }
-          alert(`you picked paper , computer picked ${computerMove2} . ${result2}`)
-          ">
+    <button  onclick="gamePlay('paper');">
       Paper 
     </button>
 
-    <button  onclick="
-      const randomNumber3 = Math.random();
-          console.log(randomNumber3)
-          let computerMove3=''
-          if (randomNumber3 <= 0.3){
-            computerMove3='rock';}
-          else if  (randomNumber3 >= 0.3 && randomNumber3 <=0.6){
-            computerMove3='paper';;
-            } 
-          else {
-            computerMove3='scissors';
-          }  
-          let result3='';
-          if (computerMove3 === 'rock'){
-            result = 'you lose';
-          } 
-          else if (computerMove3 === 'paper'){
-            result3 = 'you won';
-          }
-          else{
-            result3='lets try again';
-          }
-          alert(`you picked scissors , computer picked ${computerMove3} . ${result3}`)   
-    "> 
+    <button  onclick="gamePlay('scissors');"> 
       Scissors
     </button>
     
     
     <script>
+      function gamePlay (playerMove){
+        let computerMove = pickComputerMove();
+        let result='';
+        if (playerMove === 'rock'){
+          
+          if (computerMove === 'rock'){
+              result = 'lets try again';
+            } 
+            else if (computerMove === 'paper'){
+              result = 'you lose';
+            }
+            else{
+              result='you won';
+            }
+        }
 
+
+           else if (playerMove === 'paper'){
+              if (computerMove === 'rock'){
+                result='you win'
+              } 
+              else if (computerMove === 'paper'){
+                result = 'lets try again';
+              }
+              else{
+                result='you lose';
+              }
+           }
+
+
+
+           else if (playerMove === 'scissors'){
+              if (computerMove === 'rock'){
+                result = 'you lose';
+              } 
+              else if (computerMove === 'paper'){
+                result = 'you won';
+              }
+              else{
+                result ='lets try again';
+              }
+            }
+
+          alert(`you picked ${playerMove} , computer picked ${computerMove} . ${result}`);
+      }
+      
+      
+      
+      function pickComputerMove(){
+        const randomNumber = Math.random();
+        console.log(randomNumber)
+        let computerMove=''
+        if (randomNumber <= 0.3){
+          computerMove='rock';}
+        else if  (randomNumber >= 0.3 && randomNumber <=0.6){
+          computerMove='paper';;
+          } 
+        else {
+          computerMove='scissors';
+        }  
+        let result='';
+        return computerMove;
+      }
+
+
+          
     </script>
   </Body>
 </html>
