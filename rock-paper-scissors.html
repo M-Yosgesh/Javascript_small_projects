@@ -19,12 +19,24 @@
     <button  onclick="gamePlay('scissors');"> 
       Scissors
     </button>
+
+    <button onclick="localStorage.removeItem('score')">
+      Reset
+    </button>
     
     
     <script>
+      let score = JSON.parse(localStorage.getItem('score'));
+      if (score === null){
+        score={'wins': 0, 'loses' : 0 , 'tie' : 0};
+
+      }
+
       function gamePlay (playerMove){
         let computerMove = pickComputerMove();
         let result='';
+        
+
         if (playerMove === 'rock'){
           
           if (computerMove === 'rock'){
@@ -33,7 +45,7 @@
             else if (computerMove === 'paper'){
               result = 'you lose';
             }
-            else{
+            else if (computerMove === 'scissors'){
               result='you won';
             }
         }
@@ -41,12 +53,12 @@
 
            else if (playerMove === 'paper'){
               if (computerMove === 'rock'){
-                result='you win'
+                result='you won'
               } 
               else if (computerMove === 'paper'){
                 result = 'lets try again';
               }
-              else{
+              else if (computerMove === 'scissors'){
                 result='you lose';
               }
            }
@@ -60,12 +72,27 @@
               else if (computerMove === 'paper'){
                 result = 'you won';
               }
-              else{
+              else if (computerMove === 'scissors'){
                 result ='lets try again';
               }
             }
+          
+            if (result === 'you won'){
+              score.wins += 1;
+              //return score.wins 
+            }
+            else if (result === 'you lose'){
+              score.loses += 1;
+              //return score.loses
+            }
+            else if (result === 'lets try again'){
+              score.tie += 1;
+              //return score.tie
+            }
+            localStorage.setItem('score' , JSON.stringify(score));
 
-          alert(`you picked ${playerMove} , computer picked ${computerMove} . ${result}`);
+          alert(`you picked ${playerMove} , computer picked ${computerMove} . ${result}
+          total wins : ${score.wins}  total loses : ${score.loses}   total tie : ${score.tie}`);
       }
       
       
@@ -81,8 +108,7 @@
           } 
         else {
           computerMove='scissors';
-        }  
-        let result='';
+        } 
         return computerMove;
       }
 

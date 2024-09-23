@@ -19,70 +19,86 @@
   </head>
   <Body>
     <p> Cart Quantity : </p>
-    <button class="add-to-cart" onclick="console.log(`Cart Quantity : ${show}`)">
+
+    <button class="add-to-cart" onclick="console.log(`Cart Quantity : ${cartQuantity}`)">
       Show Quantity
     </button>
 
-    <button class="buy-now" onclick="
-          show >= 10 ? alert('the cart is full please reset') :show += 1;
-    console.log(`Cart Quantity : ${show}`)">
+    <button class="buy-now"onclick="addToCart(1)">
       Add to Cart
     </button>
 
-    <button class="buy-now" onclick="
-          show >= 10 ? alert('the cart is full please reset') :show += 2;
-          console.log(`Cart Quantity : ${show}`)">
+    <button class="buy-now" onclick="addToCart(2)">
       +2
     </button>
 
-    <button class="buy-now" onclick="
-    show +=  3;
-    console.log(`Cart Quantity : ${show}`)">
+    <button class="buy-now" onclick="addToCart(3)">
       +3
     </button>
 
-    <button class="buy-now" onclick="
-    show +=  4;
-    console.log(`Cart Quantity : ${show}`)">
+    <button class="buy-now" onclick="addToCart(4)">
       +4
     </button>
 
-    <button class="buy-now" onclick="
-    show +=  5;
-    console.log(`Cart Quantity : ${show}`)">
+    <button class="buy-now" onclick="addToCart(5)">
       +5
     </button>
 
-    <button class="buy-now" onclick="
-     show <= 0 ? alert('the cart has no items to remove add to carts') : show --;
-          console.log(`Cart Quantity : ${show}`);
-          ">
+    <button class="buy-now" onclick="removeFromCart(1)"> 
       Remove from cart
     </button>
 
-    <button class="buy-now" onclick="
-      show <= 0 ? alert('the cart has no items to remove add to carts') : show -=  2;
-      console.log(`Cart Quantity : ${show}`);
-      ">
+    <button class="buy-now"  onclick="removeFromCart(2)">
       -2
     </button>
 
-    <button class="buy-now" onclick="
-      show <= 0 ? alert('the cart has no items to remove add to carts') : show -=  3;
-          console.log(`Cart Quantity : ${show}`);
-          ">
+    <button class="buy-now"  onclick="removeFromCart(3)">
       -3
     </button>
 
-    <button class="buy-now" onclick="
-    show = 0;
-    console.log('CART WAS RESET');
-    console.log(`Cart Quantity : ${show}`)">
+    <button class="buy-now" onclick="cartReset()">
       Reset cart
     </button>
     
     <script>
-      let show=0;
+
+      let cartQuantity=0;
+
+         
+      function addToCart(numberToAdd){
+        if (cartQuantity < 10){
+          cartQuantity += numberToAdd;
+          if (cartQuantity >= 10){
+            cartQuantity=10;
+          }
+          return console.log(`Cart Quantity : ${cartQuantity}`);
+        }
+        else if (cartQuantity >= 10){
+          //cartQuantity=10;
+          alert(`the cart is full please reset`);
+        }
+      }
+
+
+        function removeFromCart(numberToAdd){
+        if (cartQuantity > 0 ){
+          cartQuantity -= numberToAdd;
+          if (cartQuantity <= 0){
+            cartQuantity=0;
+          }
+          return console.log(`Cart Quantity : ${cartQuantity}`);
+        }
+        else if (cartQuantity <= 0){
+          alert(`the cart has no items please add some`);
+        }
+
+        function cartReset(){
+          cartQuantity = 0;
+          console.log('CART WAS RESET');
+          console.log(`Cart Quantity : ${cartQuantity}`)
+        }
+        
+      }
      
     </script>
   </Body>

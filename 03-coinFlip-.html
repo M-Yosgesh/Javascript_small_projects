@@ -6,25 +6,54 @@
     </title>
   </head>
   <Body>
+    <button onclick="gamePlay('head')">
+      Heads
+    </button>
+
+    <button onclick="gamePlay('tails')">
+      Tails
+    </button>
+
+    <button onclick="localStorage.removeItem('score');"> Clear score </button>
     <script>
+      
+      
+    // let guess = prompt("Enter head or tails");
+    
+    let score = JSON.parse(localStorage.getItem('score'));
+    if (!score){
+      score={'won':0 , 'loss':0}
+    } 
+      function gamePlay(guess){
       let randomNumber = Math.random();
       let result = "";
-      let guess = prompt("Enter head or tails");
-      
-      randomNumber <= 0.5 ? result="head" :
-       result="tails";
-      console.log(randomNumber);
+      randomNumber <= 0.5 ? result='head' :
+       result='tails';
+      //console.log(randomNumber);
       console.log(`it was ${result}`);
+      
 
-      if (guess === "head"  && guess === result ){
-        console.log("yeah you guessed it right head");
+      if (guess === result   ){
+        score.won += 1;
+        alert(`yeah you guessed it right,it is head
+        your score .. won  ${score.won}  losses ${score.loss}`);
+        localStorage.setItem('score',JSON.stringify(score));
+        
       }
-      else if (guess === "tails" && guess == result){
-        console.log("yeah you guessed it right tails");
+      else if (guess ===  result){
+        score.won += 1;
+        alert(`yeah you guessed it right,it is tails
+        your score .. won  ${score.won}  losses ${score.loss}`);
+        localStorage.setItem('score',JSON.stringify(score));
       }
-      else{
-        console.log("check the spelling")
+      else {
+        score.loss += 1;
+        alert(`sorry you have guessed wrong
+        your score..  won ${score.won}  losses ${score.loss}`);
+        localStorage.setItem('score',JSON.stringify(score));
+
       }
+    }
     </script>
   </Body>
 </html>
