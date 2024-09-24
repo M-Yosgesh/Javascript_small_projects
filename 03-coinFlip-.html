@@ -6,13 +6,15 @@
     </title>
   </head>
   <Body>
-    <button onclick="gamePlay('head')">
+    <button class="js-headButton"; onclick="gamePlay('head')">
       Heads
     </button>
 
-    <button onclick="gamePlay('tails')">
+    <button  onclick="gamePlay('tails')" class='js-tailsButton'>
       Tails
     </button>
+
+    <p class="js-result">  </p>
 
     <button onclick="localStorage.removeItem('score');"> Clear score </button>
     <script>
@@ -23,7 +25,12 @@
     let score = JSON.parse(localStorage.getItem('score'));
     if (!score){
       score={'won':0 , 'loss':0}
-    } 
+    }
+   
+      let headButtonElement = document.querySelector('.js-headButton').innerText;
+      let tailsButtonElement = document.querySelector('.js-tailsButton').innerTEXT;    
+      
+     
       function gamePlay(guess){
       let randomNumber = Math.random();
       let result = "";
@@ -38,6 +45,7 @@
         alert(`yeah you guessed it right,it is head
         your score .. won  ${score.won}  losses ${score.loss}`);
         localStorage.setItem('score',JSON.stringify(score));
+        //document.querySelector('.js-result').innerHTML=`You Have Chosen : ${guess} `;
         
       }
       else if (guess ===  result){
@@ -45,6 +53,7 @@
         alert(`yeah you guessed it right,it is tails
         your score .. won  ${score.won}  losses ${score.loss}`);
         localStorage.setItem('score',JSON.stringify(score));
+       // document.querySelector('.js-result').innerHTML=`You Have Chosen : ${guess} `;
       }
       else {
         score.loss += 1;
@@ -53,7 +62,9 @@
         localStorage.setItem('score',JSON.stringify(score));
 
       }
+      
     }
+    
     </script>
   </Body>
 </html>

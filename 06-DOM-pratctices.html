@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>
+    DOM-practices
+    </title>
+  </head>
+  <Body>
+    <input placeholder="NAME" class="js-playerName" onkeydown="pressEnterToSubmit(event); " onkeyup="displayResultLive(event)" >
+
+
+    <button class="js-submitButton" onclick="doSubmitName()"> Submit </button>
+    <p class="js-displayName"></p>
+    <button class="js-button1" onclick="displayResult('heads')"> heads </button>
+    <button class="js-button2" onclick="displayResult('tails')"> tails </button>
+    <p class="js-result"> </p>
+    <script>
+    const buttonElement1 = document.querySelector('.js-button1').innerText;
+    //console.log(buttonElement1);
+
+    const buttonElement2 = document.querySelector('.js-button2').innerText ;
+    //buttonElement2 = '9B DONE'
+    //console.log(buttonElement2);
+    
+    
+    let playerNameElement="";
+    function doSubmitName(){
+     let playerNameElement= document.querySelector('.js-playerName').value;
+     playerNameElement= playerNameElement.toUpperCase();
+     //console.log(typeof playerNameElement);
+     document.querySelector('.js-displayName').innerHTML = `COME ON ! ${playerNameElement} ,Lets BEGIN THE GAME .
+     START BY GUSSING HEADS OR TAILS` ; 
+     
+     //return playerNameElement;
+    }
+    function pressEnterToSubmit(event){
+      if (event.key === 'Enter'){
+        doSubmitName();
+      }
+    }
+
+    function displayResultLive(event){
+      let resultLive=''
+      resultLive = document.querySelector('.js-playerName').value;
+      resultLive= resultLive.toUpperCase();
+     //console.log(typeof playerNameElement);
+     document.querySelector('.js-displayName').innerHTML = `COME ON ! ${resultLive}, Lets BEGIN THE GAME ` ; 
+    }
+  
+    function displayResult(result){
+      if (result === buttonElement1){
+        doSubmitName();
+        document.querySelector('.js-result').innerHTML = `You chose : ${buttonElement1}`;
+      }
+      else if (result === buttonElement2){
+        document.querySelector('.js-result').innerHTML = `You chose : ${buttonElement2}`;
+      }
+    }
+
+
+    </script>
+  </Body>
+</html>

@@ -20,7 +20,18 @@
       Scissors
     </button>
 
-    <button onclick="localStorage.removeItem('score')">
+    <p class="js-result"></p>
+
+    <p class="js-moves"></p>
+
+    <p class="js-scoreboard"> </p>
+
+    <button onclick="
+    score.wins = 0;
+    score.loses = 0;
+    score.tie = 0;
+    localStorage.removeItem('score');
+    updateScoreboard();">
       Reset
     </button>
     
@@ -31,6 +42,12 @@
         score={'wins': 0, 'loses' : 0 , 'tie' : 0};
 
       }
+
+      document.querySelector('.js-scoreboard')
+      .innerHTML = `total wins : ${score.wins}  total loses : ${score.loses}   total tie : ${score.tie}`;
+
+      
+
 
       function gamePlay (playerMove){
         let computerMove = pickComputerMove();
@@ -90,12 +107,35 @@
               //return score.tie
             }
             localStorage.setItem('score' , JSON.stringify(score));
+            
+            //updateResult();
+            //updateMoves();
+            document.querySelector('.js-result')
+                  .innerHTML = `${result}`;
 
-          alert(`you picked ${playerMove} , computer picked ${computerMove} . ${result}
-          total wins : ${score.wins}  total loses : ${score.loses}   total tie : ${score.tie}`);
+            document.querySelector('.js-moves')
+                  .innerHTML =  `you picked ${playerMove} , computer picked ${computerMove}`;
+            updateScoreboard();
+
+          /*alert(`you picked ${playerMove} , computer picked ${computerMove} . ${result}
+          total wins : ${score.wins}  total loses : ${score.loses}   total tie : ${score.tie}`);*/
       }
       
-      
+
+
+      function updateResult(){
+         document.querySelector('.js-result')
+                .innerHTML =  `${result}`;
+      }
+      function updateMoves(){
+         document.querySelector('.js-moves')
+                .innerHTML =  `you picked ${playerMove} , computer picked ${computerMove}`;
+      }
+
+      function updateScoreboard(){
+        let scoreBoardElement = document.querySelector('.js-scoreboard')
+            .innerHTML = `total wins : ${score.wins}  total loses : ${score.loses}   total tie : ${score.tie}`;
+      }
       
       function pickComputerMove(){
         const randomNumber = Math.random();

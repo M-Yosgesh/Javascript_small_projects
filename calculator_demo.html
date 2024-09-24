@@ -6,6 +6,9 @@
     </title>
   </head>
   <Body>
+
+      <p class="js-displayCalculation"> </p>
+
     <P>
       <button onclick="doCalculation('1')">1</button>
 
@@ -39,25 +42,32 @@
     <button onclick="equalsTo(calculation);
    ">=</button>
 
-    <button onclick=" localStorage.removeItem(result);
-    console.log(calculation)
+    <button onclick=" localStorage.removeItem('final-result');
+    document.querySelector('.js-displayCalculation').innerHTML=''
     calculation=''"> clear </button>
 
     <script>
-     let calculation = JSON.parse(localStorage.getItem('calculation')) ;
-     if (!calculation){
-      calculation = ''
-     }
-     console.log(calculation) 
-      function doCalculation(number){
 
+
+     let calculation = JSON.parse(localStorage.getItem('final-result'));
+     if (!calculation){
+      calculation= '';
+     } 
+     document.querySelector('.js-displayCalculation').innerHTML=calculation;
+
+
+     function doCalculation(number){
       calculation += number;
-      console.log(calculation);
+      document.querySelector('.js-displayCalculation').innerHTML=calculation;
       }
+
+
       function equalsTo(finalCalculation){
-      result = eval(finalCalculation);
-       console.log(result); 
-       localStorage.setItem('calculation',JSON.stringify(result))      
+       result = eval(finalCalculation);
+       calculation=result;
+
+       document.querySelector('.js-displayCalculation').innerHTML=calculation;
+       localStorage.setItem('final-result',JSON.stringify(calculation));            
       }
       
     </script>
