@@ -4,156 +4,44 @@
     <title>
       Rock Paper scissors
     </title>
+    <link rel="stylesheet" href="Styles/rock-paper-scissors.css">
   </head>
   <Body>
-    <p> Rock Paper Scissors</p>
+    <p class="title"> . . . . . . . . . . . . . . . . . . . . . Rock . . . . . . Paper . . . . . . Scissors  . . . . . . . . . . . . . . . . . . . . .</p>
 
-    <button onclick="gamePlay('rock');;">
-      Rock
-    </button>
+    <div class="moves-container">
+      <button onclick="gamePlay('rock');" class="moves-button">
+        <img src="Images/rock.png" class="moves-icon">
+      </button>
 
-    <button  onclick="gamePlay('paper');">
-      Paper 
-    </button>
+      <button  onclick="gamePlay('paper');" class="moves-button">
+        <img src="Images/paper.png" class="moves-icon"> 
+      </button>
 
-    <button  onclick="gamePlay('scissors');"> 
-      Scissors
-    </button>
+      <button  onclick="gamePlay('scissors');" class="moves-button"> 
+        <img src="Images/scissors.png" class="moves-icon">
+      </button>
+    </div>
 
-    <p class="js-result"></p>
+    <div  class="moves-container-result">
+      <p class="js-moves moves-indicator"></p>
+      <p class="js-result result"> </p>
 
-    <p class="js-moves"></p>
+    </div>
 
-    <p class="js-scoreboard"> </p>
+    <p class="js-scoreboard scoreboard" > </p>
 
     <button onclick="
     score.wins = 0;
     score.loses = 0;
     score.tie = 0;
     localStorage.removeItem('score');
-    updateScoreboard();">
+    updateScoreboard();" 
+    class="reset-button">
       Reset
     </button>
     
     
-    <script>
-      let score = JSON.parse(localStorage.getItem('score'));
-      if (score === null){
-        score={'wins': 0, 'loses' : 0 , 'tie' : 0};
-
-      }
-
-      document.querySelector('.js-scoreboard')
-      .innerHTML = `total wins : ${score.wins}  total loses : ${score.loses}   total tie : ${score.tie}`;
-
-      
-
-
-      function gamePlay (playerMove){
-        let computerMove = pickComputerMove();
-        let result='';
-        
-
-        if (playerMove === 'rock'){
-          
-          if (computerMove === 'rock'){
-              result = 'lets try again';
-            } 
-            else if (computerMove === 'paper'){
-              result = 'you lose';
-            }
-            else if (computerMove === 'scissors'){
-              result='you won';
-            }
-        }
-
-
-           else if (playerMove === 'paper'){
-              if (computerMove === 'rock'){
-                result='you won'
-              } 
-              else if (computerMove === 'paper'){
-                result = 'lets try again';
-              }
-              else if (computerMove === 'scissors'){
-                result='you lose';
-              }
-           }
-
-
-
-           else if (playerMove === 'scissors'){
-              if (computerMove === 'rock'){
-                result = 'you lose';
-              } 
-              else if (computerMove === 'paper'){
-                result = 'you won';
-              }
-              else if (computerMove === 'scissors'){
-                result ='lets try again';
-              }
-            }
-          
-            if (result === 'you won'){
-              score.wins += 1;
-              //return score.wins 
-            }
-            else if (result === 'you lose'){
-              score.loses += 1;
-              //return score.loses
-            }
-            else if (result === 'lets try again'){
-              score.tie += 1;
-              //return score.tie
-            }
-            localStorage.setItem('score' , JSON.stringify(score));
-            
-            //updateResult();
-            //updateMoves();
-            document.querySelector('.js-result')
-                  .innerHTML = `${result}`;
-
-            document.querySelector('.js-moves')
-                  .innerHTML =  `you picked ${playerMove} , computer picked ${computerMove}`;
-            updateScoreboard();
-
-          /*alert(`you picked ${playerMove} , computer picked ${computerMove} . ${result}
-          total wins : ${score.wins}  total loses : ${score.loses}   total tie : ${score.tie}`);*/
-      }
-      
-
-
-      function updateResult(){
-         document.querySelector('.js-result')
-                .innerHTML =  `${result}`;
-      }
-      function updateMoves(){
-         document.querySelector('.js-moves')
-                .innerHTML =  `you picked ${playerMove} , computer picked ${computerMove}`;
-      }
-
-      function updateScoreboard(){
-        let scoreBoardElement = document.querySelector('.js-scoreboard')
-            .innerHTML = `total wins : ${score.wins}  total loses : ${score.loses}   total tie : ${score.tie}`;
-      }
-      
-      function pickComputerMove(){
-        const randomNumber = Math.random();
-        console.log(randomNumber)
-        let computerMove=''
-        if (randomNumber <= 0.3){
-          computerMove='rock';}
-        else if  (randomNumber >= 0.3 && randomNumber <=0.6){
-          computerMove='paper';;
-          } 
-        else {
-          computerMove='scissors';
-        } 
-        return computerMove;
-      }
-
-
-          
-    </script>
+    <script src="Scripts/rock-paper-scissors.js">   </script>
   </Body>
 </html>
