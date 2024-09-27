@@ -4,54 +4,136 @@
     <title>
     calculator
     </title>
+    <style>
+      body{
+        background-color: rgb(206, 227, 226);
+        
+
+      }
+      .result-layout{
+        display: flex;
+        border: 3px solid rgb(247, 166, 74) ;
+        border-radius: 7px;
+        height: 60px;
+        width: 340px;
+        position: fixed;
+        top: 27px ;
+        left: 108px ;
+
+        
+        
+      }
+      .calculator-layout{
+        display: grid;
+        background-color: rgb(245, 216, 184);
+        grid-template-columns: 1fr 1fr 1fr  ;
+        row-gap: 22px;
+        padding: 35px 20px;
+        padding-bottom: 75px;
+        margin-top: 90px ;
+        margin-left: 100px;
+        
+        border: 3px solid rgb(247, 166, 74) ;
+        border-radius: 10px;
+        height: 350px;
+        width: 300px;
+        justify-items: center;
+        position: relative;
+        
+        
+      }
+      .displayCalculation{
+        font-size: 22px;
+        flex: 1;
+        padding-left: 25px;
+        padding-bottom: 55px;
+
+      }
+      .keys{
+        font-size: 18px;
+        border: none;
+        background-color: rgb(254, 211, 161) ;
+        border: 2px solid rgb(247, 166, 74) ;
+        border-radius: 22px;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        
+      }
+      .keys-clear{
+        font-size: 18px;
+        border: none;
+        background-color: rgb(254, 211, 161) ;
+        border: 2px solid rgb(247, 166, 74) ;
+        border-radius: 22px;
+        height: 50px;
+        line-height: 46px;
+        width: 150px;
+        cursor: pointer;
+        
+      }
+      .clear-button{
+        display: flex;
+        position: absolute;
+        bottom: 15px;
+      }
+    </style>
   </head>
   <Body>
+  <div class="result-layout">
+      <p class="js-displayCalculation displayCalculation"> </p></div>
 
-      <p class="js-displayCalculation"> </p>
+  <div class="calculator-layout"> 
+     <button onclick="doCalculation('1')"  onkeydown="pressNumberToSubmit(event)" class="js-key1 keys">1</button>
 
-    <P>
-      <button onclick="doCalculation('1')">1</button>
+    <button onclick="doCalculation('2')" onkeydown=" pressNumberToSubmit(event)" class="js-key2 keys">2</button>
 
-      <button onclick="doCalculation('2')">2</button>
-
-      <button onclick="doCalculation('3')">3</button>
-    </P>
-
-
-    <P>
-      <button onclick="doCalculation('4')">4</button>
-
-      <button onclick="doCalculation('5')">5</button>
-
-      <button onclick="doCalculation('6')">6</button>
-    </P>
+    <button onclick="doCalculation('3')" onkeydown=" pressNumberToSubmit(event)" class="js-key3 keys">3</button>
+    
 
 
-    <P>
-      <button onclick="doCalculation('7')">7</button>
+    
+     <button onclick="doCalculation('4')" onkeydown="pressNumberToSubmit(event)" class="js-key4 keys">4</button>
 
-      <button onclick="doCalculation('8')">8</button>
+    <button onclick="doCalculation('5')" onkeydown="pressNumberToSubmit(event)" class="js-key5 keys">5</button>
 
-      <button onclick="doCalculation('9')">9</button>
-    </P>
+    <button onclick="doCalculation('6')" onkeydown="pressNumberToSubmit(event)" class="js-key6 keys">6</button>
+    
 
-    <button onclick="doCalculation(' + ')">+</button>
 
-    <button onclick="doCalculation(' - ')">-</button>
+    
+     <button onclick="doCalculation('7')" onkeydown="pressNumberToSubmit(event)" class="js-key7 keys">7</button>
+
+    <button onclick="doCalculation('8')" onkeydown="pressNumberToSubmit(event)" class="js-key8 keys">8</button>
+
+    <button onclick="doCalculation('9')" onkeydown="pressNumberToSubmit(event)" class="js-key9 keys">9</button>
+
+    <button onclick="doCalculation('0')" onkeydown="pressNumberToSubmit(event)" class="js-key0 keys">0</button>
+
+    <button onclick="doCalculation(' + ')" onkeydown="pressNumberToSubmit(event)" class="js-key keys">+</button>
+
+    <button onclick="doCalculation(' - ')" onkeydown="pressNumberToSubmit(event)" class="js-key- keys">-</button>
+
+    <button onclick="doCalculation(' * ')" onkeydown="pressNumberToSubmit(event)" class="js-key keys">*</button>
+
+    <button onclick="doCalculation(' / ')" onkeydown="pressNumberToSubmit(event)" class="js-key keys">/</button>
 
     <button onclick="equalsTo(calculation);
-   ">=</button>
+   " onkeydown="pressNumberToSubmit(event)" class="js-key keys">=</button>
 
-    <button onclick=" localStorage.removeItem('final-result');
-    document.querySelector('.js-displayCalculation').innerHTML=''
-    calculation=''"> clear </button>
-
+ <div class="clear-button">
+  <button onclick=" localStorage.removeItem('final-result');
+  document.querySelector('.js-displayCalculation').innerHTML=''
+  calculation='0'" class="keys-clear"> Clear </button> </div>
+   
+  </div>
+ 
     <script>
-
-
+      
+      
      let calculation = JSON.parse(localStorage.getItem('final-result'));
      if (!calculation){
-      calculation= '';
+      calculation= '0';
      } 
      document.querySelector('.js-displayCalculation').innerHTML=calculation;
 
@@ -68,6 +150,13 @@
 
        document.querySelector('.js-displayCalculation').innerHTML=calculation;
        localStorage.setItem('final-result',JSON.stringify(calculation));            
+      }
+      function pressNumberToSubmit(event){
+        //document.querySelector('button').innerHTML='yes';
+
+        num=document.querySelector(`.js-key${event.key}`).innerHTML;
+        doCalculation(num);
+        console.log(event.key);
       }
       
     </script>
