@@ -16,7 +16,7 @@
         display: grid;
         grid-template-columns: 1fr;
         row-gap: 30px;
-        padding: 150px 200px;
+        padding: 100px 200px;
         margin: 25px;
         background-color: rgb(52, 82, 108);
       }
@@ -29,16 +29,23 @@
         
 
       }
-      .play-button-icon{
-        width: 75px;
-      }
       .play-button{
-        background-color: transparent;
+        background-color: rgb(107, 96, 104);
         border: 3px solid rgb(54, 20, 67);
         height: 120px;
         width: 120px;
         border-radius: 50%;
         cursor: pointer;
+        font-size: 28px;
+      }
+      .clear-button{
+        font-size: 25px;
+        font-weight: bold;
+        background-color: rgb(107, 96, 104);
+        border: 1px solid rgb(54, 20, 67);
+        border-radius: 15px;
+        padding : 20px 5px ;
+        width: 200px;
       }
 
     </style>
@@ -47,12 +54,12 @@
     <div class="game-layout">
     <div class="button-layout">
       <button class="js-headButton play-button"; onclick="gamePlay('head')">
-        <img class="play-button-icon" src="Images/win.png">
+        HEADS
       </button>
       
 
       <button  onclick="gamePlay('tails')" class='js-tailsButton play-button'>
-        <img class="play-button-icon" src="Images/lose.png">
+        TAILS
       </button>
     </div>
 
@@ -62,12 +69,12 @@
       <p class="js-result3">  </p>
     </div>
 
-    <button onclick="localStorage.removeItem('score');
+    <button class="clear-button" onclick="localStorage.removeItem('score');
     score.won = 0;
     score.loss = 0;
     document.querySelector('.js-result').innerHTML = (`Results Description`);
     document.querySelector('.js-result2').innerHTML = (`Results`);
-    document.querySelector('.js-result3').innerHTML = (`Won  ${score.won}  Losses ${score.loss}`);"
+    document.querySelector('.js-result3').innerHTML = (`Won  ${score.won}  Losses ${score.loss}`); "
     > Clear score </button>
   </div>
     <script src="Scripts/03-coinFlip.js"> 
