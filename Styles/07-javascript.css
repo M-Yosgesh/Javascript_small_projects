@@ -1,0 +1,21 @@
+.gaming-button-on , .music-button-on , .tech-button-on{
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight:400;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 13px;
+  background-color: rgb(196, 196, 196);
+  color: black;
+}
+.js-button-off{
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight:400;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}

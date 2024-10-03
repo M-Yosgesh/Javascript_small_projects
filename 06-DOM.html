@@ -4,6 +4,15 @@
     <title>
     DOM
     </title>
+    <style>
+      body{
+        font-family: arial;
+      }
+      .afterTotalCost{
+        color: red;
+
+      }
+    </style>
   </head>
   <Body>
     <p> YouTube Subscribe Button </p>
@@ -22,7 +31,7 @@
     <p> Orders over $40 = FREE shipping.</p>
     <input placeholder="cost of the order" class="js-costCalculation" onkeydown="pressEntertocalculate(event);">
     <button onclick="calculateCost()">Calculate</button>
-    <p class="js-afterTotalCost" onclick="" ></p>
+    <p class="js-afterTotalCost afterTotalCost" onclick="" ></p>
 
     
     <script>
@@ -31,13 +40,21 @@
       let cost = Number(costCalculationElement);
       
       console.log(cost);
-      if (cost < 40){
+       if (cost <= 0){
+        document.querySelector('.js-afterTotalCost').innerHTML=`ERROR : cost connot be less than or not to be  $0 `
+      }
+      else if ( cost < 40){
         cost*=100
         cost += 1000;
         cost/=100;
         console.log(cost);
+        document.querySelector('.js-afterTotalCost').innerHTML= `$${cost}`
       }
-      document.querySelector('.js-afterTotalCost').innerHTML= `$${cost}`
+      else if (cost >= 40){
+        document.querySelector('.js-afterTotalCost').innerHTML= `$${cost}`
+      }
+      
+      
       }
       //console.log(event.key)
       function pressEntertocalculate(event){
