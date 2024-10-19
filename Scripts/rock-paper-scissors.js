@@ -13,6 +13,23 @@ let score = JSON.parse(localStorage.getItem('score'));
             document.querySelector('.js-moves')
                   .innerHTML =  `MOves `;*/
 
+
+      let isAutoPlay = false;      
+      let intervelId;
+      
+      function autoPlay(){
+        if (!isAutoPlay){
+        intervelId = setInterval(function(){
+          const move= pickComputerMove() ;
+          gamePlay(move); 
+          },2000);
+        isAutoPlay = true;
+      }
+    else{
+      clearInterval(intervelId);
+      isAutoPlay = false;
+    }
+  }
       
 
 

@@ -45,15 +45,29 @@ body{
 .moves-icon-result{
   height: 50px;
 }
-.reset-button{
+.button-container{
+  display: flex;
+
+  justify-content: space-evenly;
+}
+.reset-button,.auto-play-button{
   margin-bottom: 25px;
+  margin-right: 10px;
   background-color:  rgb(155, 126, 72);
   border: none ;
-  padding: 20px 50px;
+  padding: 17px 30px;
   font-size: 18px;
   font-weight: bold;
   border-radius: 50px;
   cursor: pointer;
+}
+.reset-button:hover,.auto-play-button:hover{
+  background-color:  rgb(125, 97, 44);
+}
+
+.reset-button:active,.auto-play-button:active{
+  background-color:  rgb(125, 97, 44);
+  font-size: 16px;
 }
 .result{
   font-size: 30px;
